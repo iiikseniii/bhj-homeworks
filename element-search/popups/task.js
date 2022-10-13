@@ -1,15 +1,17 @@
-const modal = document.getElementById('subscribe-modal');
-const closeBtn = document.querySelector('.modal__close');
+const main = document.getElementById('modal_main');
+const success = document.getElementById('modal_success');
+main.classList.add('modal_active');
+const arrCloseButtons = Array.from(document.getElementsByClassName('modal__close'));
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.cookie === '') {
-    modal.classList.add('modal_active');
+arrCloseButtons.forEach(btn => btn.onclick = function() {
+  let parent = btn.closest('.modal');
+  if (parent.classList.contains('modal_active')) {
+    parent.classList.remove('modal_active');
   }
 });
 
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('modal_active');
-  let date = new Date();
-  date.setTime(date.getTime() + (3600 * 1000 * 24));
-  document.cookie = 'modalClosed=true; expires=' + date.toUTCString();
-});
+const showSuccess = document.querySelector('.show-success');
+showSuccess.onclick = function() {
+  main.classList.remove('modal_active');
+  success.classList.add('modal_active');
+};
