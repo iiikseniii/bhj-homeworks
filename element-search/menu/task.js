@@ -6,7 +6,7 @@ subMenu.forEach(function(link) {
     let clickEl = link;
     subMenu.forEach(function(link) {
       if (link === clickEl) {
-        link.nextElementSibling.classList.add("menu_active");
+        link.nextElementSibling.classList.toggle("menu_active");
       } 
     })
     return false;
